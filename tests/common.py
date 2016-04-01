@@ -166,10 +166,14 @@ class MockModule(object):
 class MockPlatform(object):
     """Provide a fake platform."""
 
-    def __init__(self, setup_platform=None, dependencies=[]):
+    def __init__(self, setup_platform=None, dependencies=[],
+                 platform_schema=None):
         """Initialize the platform."""
         self.DEPENDENCIES = dependencies
         self._setup_platform = setup_platform
+
+        if platform_schema is not None:
+            self.PLATFORM_SCHEMA = platform_schema
 
     def setup_platform(self, hass, config, add_devices, discovery_info=None):
         """Setup the platform."""
